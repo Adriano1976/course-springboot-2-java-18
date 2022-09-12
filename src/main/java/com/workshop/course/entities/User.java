@@ -1,13 +1,37 @@
 package com.workshop.course.entities;
 
+import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
-public class User implements Serializable {
+/*
+Pode forçar o Hibernate a citar um identificador no SQL gerado, anexando o nome da tabela
+ou coluna em backticks no documento de mapeamento. Enquanto tradicionalmente, o Hibernate usava
+backticks para escapar das palavras-chave reservadas do SQL, o JPA usa aspas duplas.
 
+Depois que as palavras-chave reservadas forem escapadas, o Hibernate usará o estilo de cotação
+correto para o SQL Dialect. Geralmente, são aspas duplas, mas o SQL Server usa colchetes e o
+MySQL usa backticks.
+**/
+
+@Entity
+@Table(name = "`user`")
+public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "`id`", nullable = false)
     private Long id;
+
+    @Column(name = "`name`", length = 100, nullable = false)
     private String name;
+    @Column(name = "`email`", length = 100, nullable = false)
     private String email;
+    @Column(name = "`phone`", length = 15, nullable = false)
     private String phone;
+    @Column(name = "`password`", length = 15, nullable = false)
     private String password;
 
     public User() {
