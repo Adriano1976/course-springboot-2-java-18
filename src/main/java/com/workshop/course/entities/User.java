@@ -3,6 +3,8 @@ package com.workshop.course.entities;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 Pode forçar o Hibernate a citar um identificador no SQL gerado, anexando o nome da tabela
@@ -15,7 +17,7 @@ MySQL usa backticks.
 **/
 
 @Entity
-@Table(name = "`user`")
+@Table(name = "`tb_user`")
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -33,6 +35,9 @@ public class User implements Serializable {
     private String phone;
     @Column(name = "`password`", length = 15, nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -83,6 +88,10 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
