@@ -1,5 +1,7 @@
 package com.workshop.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -36,8 +38,9 @@ public class User implements Serializable {
     @Column(name = "`password`", length = 15, nullable = false)
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
     public User() {
     }
