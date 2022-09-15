@@ -1,5 +1,6 @@
 package com.workshop.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.workshop.course.entities.pk.OrderItemPK;
 
 import javax.persistence.EmbeddedId;
@@ -16,7 +17,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPK id;
+    private final OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
     private Double price;
@@ -25,13 +26,13 @@ public class OrderItem implements Serializable {
     }
 
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
-        super();
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
