@@ -1,5 +1,7 @@
 package com.workshop.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -8,32 +10,28 @@ import java.util.Set;
 
 @Entity
 @Table(name = "`tb_product`")
-public class Product  implements Serializable {
+public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`id`", nullable = false)
-    private Long id;
-
-    @Column(name = "`name`", length = 100, nullable = false)
-    private String name;
-
-    @Column(name = "`description`", length = 200, nullable = false)
-    private String description;
-
-    @Column(name = "`price`", length = 10, nullable = false)
-    private Double price;
-
-    @Column(name = "`imgUrl`", length = 200, nullable = false)
-    private String imgUrl;
-
     @ManyToMany
     @JoinTable(name = "`tb_product_category`",
             joinColumns = @JoinColumn(name = "`product_id`"),
             inverseJoinColumns = @JoinColumn(name = "`category_id`"))
-    private Set<Category> categories = new HashSet<>();
+    private final Set<Category> categories = new HashSet<>();
+    @OneToMany(mappedBy = "id.product")
+    private final Set<OrderItem> items = new HashSet<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "`id`", nullable = false)
+    private Long id;
+    @Column(name = "`name`", length = 100, nullable = false)
+    private String name;
+    @Column(name = "`description`", length = 200, nullable = false)
+    private String description;
+    @Column(name = "`price`", length = 10, nullable = false)
+    private Double price;
+    @Column(name = "`imgUrl`", length = 200, nullable = false)
+    private String imgUrl;
 
     public Product() {
     }
@@ -88,6 +86,15 @@ public class Product  implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem orderItem : items) {
+            set.add(orderItem.getOrder());
+        }
+        return set;
     }
 
     @Override
