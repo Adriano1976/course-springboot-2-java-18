@@ -23,12 +23,13 @@ MySQL usa backticks.
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
+    @JsonIgnore  // Ele não retorna no JSON, mas no código ainda tem acesso a ele e pode trabalhar com ele.
+    @OneToMany(mappedBy = "client")
+    private final List<Order> orders = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)
     private Long id;
-
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
     @Column(name = "`email`", length = 100, nullable = false)
@@ -37,10 +38,6 @@ public class User implements Serializable {
     private String phone;
     @Column(name = "`password`", length = 15, nullable = false)
     private String password;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "client")
-    private final List<Order> orders = new ArrayList<>();
 
     public User() {
     }

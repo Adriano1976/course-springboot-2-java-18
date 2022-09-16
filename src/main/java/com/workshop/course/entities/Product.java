@@ -88,7 +88,7 @@ public class Product implements Serializable {
         return categories;
     }
 
-    @JsonIgnore
+    @JsonIgnore  // Ele não retorna no JSON, mas no código ainda tem acesso a ele e pode trabalhar com ele.
     public Set<Order> getOrders() {
         Set<Order> set = new HashSet<>();
         for (OrderItem orderItem : items) {

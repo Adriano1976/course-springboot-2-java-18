@@ -13,18 +13,15 @@ import java.util.Set;
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
+    @JsonIgnore  // Ele não retorna no JSON, mas no código ainda tem acesso a ele e pode trabalhar com ele.
+    @ManyToMany(mappedBy = "categories")
+    private final Set<Product> products = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)
     private Long id;
-
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "categories")
-    private final Set<Product> products = new HashSet<>();
 
     public Category() {
     }
