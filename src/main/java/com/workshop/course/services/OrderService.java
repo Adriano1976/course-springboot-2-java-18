@@ -25,7 +25,7 @@ public class OrderService {
 
     public Order findByInd(Long id) {
         Optional<Order> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Order insert(Order objeto) {
