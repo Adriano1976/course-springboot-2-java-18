@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +42,22 @@ public class ProductService {
         } catch (DataIntegrityViolationException exception) {
             throw new DatabaseException(exception.getMessage());
         }
+    }
+
+    public Product update(Long id, Product objeto) {
+        try {
+            Product entity = repository.getReferenceById(id);
+            updateData(entity, objeto);
+            return repository.save(entity);
+        } catch (EntityNotFoundException exception) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    private void updateData(Product entity, Product objeto) {
+        entity.setName(objeto.getName());
+        entity.setDescription(objeto.getDescription());
+        entity.setPrice(objeto.getPrice());
+        entity.setImgUrl(objeto.getImgUrl());
     }
 }

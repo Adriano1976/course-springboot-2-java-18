@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +42,22 @@ public class OrderService {
         } catch (DataIntegrityViolationException exception) {
             throw new DatabaseException(exception.getMessage());
         }
+    }
+
+    public Order update(Long id, Order objeto) {
+        try {
+            Order entity = repository.getReferenceById(id);
+            updateData(entity, objeto);
+            return repository.save(entity);
+        } catch (EntityNotFoundException exception) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    private void updateData(Order entity, Order objeto) {
+        entity.setMomento(objeto.getMomento());
+        entity.setOrderStatus(objeto.getOrderStatus());
+        entity.setClient(objeto.getClient());
+        entity.setPayment(objeto.getPayment());
     }
 }

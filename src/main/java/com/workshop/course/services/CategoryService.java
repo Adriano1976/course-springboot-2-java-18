@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +42,19 @@ public class CategoryService {
         } catch (DataIntegrityViolationException exception) {
             throw new DatabaseException(exception.getMessage());
         }
+    }
+
+    public Category update(Long id, Category objeto) {
+        try {
+            Category entity = repository.getReferenceById(id);
+            updateData(entity, objeto);
+            return repository.save(entity);
+        } catch (EntityNotFoundException exception) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    private void updateData(Category entity, Category objeto) {
+        entity.setname(objeto.getname());
     }
 }
