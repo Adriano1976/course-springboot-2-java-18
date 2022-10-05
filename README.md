@@ -35,7 +35,7 @@ Programação orientada a objetos (qualquer linguagem).
 * Postman
 * Heroku
 
-## Visão geral do sistema
+## Modelo Conceitual do Projeto
 
 Nesse projeto está sendo construido um pequeno sistema (API REST) de um departamento de vendas, com os seguintes casos de uso:
 
@@ -44,3 +44,15 @@ Buscar um usuário, produto, categoria e ordem de compra pelo seu id.
 Inserir um novo usuário, produto, categoria...
 
 ![projeto - model 1](https://user-images.githubusercontent.com/17755195/191788487-d898cc8b-2d7f-4991-a87c-7e8fd9ce86d1.png)
+
+## Projeto Funcionando no Heroku
+
+* https://workshopcourse-java-springboot.herokuapp.com/
+* https://workshopcourse-java-springboot.herokuapp.com/products
+* https://workshopcourse-java-springboot.herokuapp.com/orders
+* https://workshopcourse-java-springboot.herokuapp.com/users
+* https://workshopcourse-java-springboot.herokuapp.com/categories
+
+## Visualizando o Projeto com o Postman
+
+* https://documenter.getpostman.com/view/20651332/2s83zdvmJ6
