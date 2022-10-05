@@ -45,6 +45,14 @@ Inserir um novo usuário, produto, categoria...
 
 ![projeto - model 1](https://user-images.githubusercontent.com/17755195/191788487-d898cc8b-2d7f-4991-a87c-7e8fd9ce86d1.png)
 
+## Instância de Domínio do Projeto
+
+![web services springboot - 01](https://user-images.githubusercontent.com/17755195/194159496-389280d4-a430-439b-9891-1551a4408862.png)
+
+## Camadas Lógicas do Projeto
+
+![web services springboot - 02](https://user-images.githubusercontent.com/17755195/194160003-a00426c7-8b78-4061-91e7-784ba16e02e2.png)
+
 ## Projeto Funcionando no Heroku
 
 * https://workshopcourse-java-springboot.herokuapp.com/
@@ -56,3 +64,9 @@ Inserir um novo usuário, produto, categoria...
 ## Visualizando o Projeto com o Postman
 
 * https://documenter.getpostman.com/view/20651332/2s83zdvmJ6
+
+## Autor do Projeto
+
+Adriano Santos
+
+* https://www.linkedin.com/in/adrianosantos-dev/
