@@ -17,7 +17,6 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "id.order")
     private final Set<OrderItem> items = new HashSet<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)

@@ -1,6 +1,7 @@
 package com.workshop.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -16,10 +17,12 @@ public class Category implements Serializable {
     @JsonIgnore  // Ele não retorna no JSON, mas no código ainda tem acesso a ele e pode trabalhar com ele.
     @ManyToMany(mappedBy = "categories")
     private final Set<Product> products = new HashSet<>();
+    @ApiModelProperty(value = "Código da categoria do produto")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)
     private Long id;
+    @ApiModelProperty(value = "Nome da categoria do produto")
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
 

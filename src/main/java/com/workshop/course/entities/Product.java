@@ -1,6 +1,7 @@
 package com.workshop.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -20,16 +21,21 @@ public class Product implements Serializable {
     private final Set<Category> categories = new HashSet<>();
     @OneToMany(mappedBy = "id.product")
     private final Set<OrderItem> items = new HashSet<>();
+    @ApiModelProperty(value = "Código do produto")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)
     private Long id;
+    @ApiModelProperty(value = "Nome do produto")
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
+    @ApiModelProperty(value = "Descrição do produto")
     @Column(name = "`description`", length = 200, nullable = false)
     private String description;
+    @ApiModelProperty(value = "Preço do produto")
     @Column(name = "`price`", length = 10, nullable = false)
     private Double price;
+    @ApiModelProperty(value = "Url da imagem do produto")
     @Column(name = "`imgUrl`", length = 200, nullable = false)
     private String imgUrl;
 

@@ -1,6 +1,7 @@
 package com.workshop.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -26,16 +27,21 @@ public class User implements Serializable {
     @JsonIgnore  // Ele não retorna no JSON, mas no código ainda tem acesso a ele e pode trabalhar com ele.
     @OneToMany(mappedBy = "client")
     private final List<Order> orders = new ArrayList<>();
+    @ApiModelProperty(value = "Código do usuário")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`", nullable = false)
     private Long id;
+    @ApiModelProperty(value = "Nome do usuário")
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
+    @ApiModelProperty(value = "E-mail do usuário")
     @Column(name = "`email`", length = 100, nullable = false)
     private String email;
+    @ApiModelProperty(value = "Telefone do usuário")
     @Column(name = "`phone`", length = 15, nullable = false)
     private String phone;
+    @ApiModelProperty(value = "Senha do usuário")
     @Column(name = "`password`", length = 15, nullable = false)
     private String password;
 

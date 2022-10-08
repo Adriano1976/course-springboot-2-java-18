@@ -1,6 +1,7 @@
 package com.workshop.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -13,10 +14,12 @@ public class Payment implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "Código do pagamento")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`")
     private Long id;
+    @ApiModelProperty(value = "Dia e horário do pagamento")
     private Instant moment;
 
     @JsonIgnore

@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Arrays;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 public class TextConfig implements CommandLineRunner {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
