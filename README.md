@@ -65,6 +65,10 @@ Inserir um novo usuário, produto, categoria...
 
 * https://documenter.getpostman.com/view/20651332/2s83zdvmJ6
 
+## Visualizando o Projeto com o Swagger UI
+
+* https://workshopcourse-java-springboot.herokuapp.com/swagger-ui.html#/
+
 ## Autor do Projeto
 
 Adriano Santos
