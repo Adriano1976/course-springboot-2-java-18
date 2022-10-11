@@ -46,6 +46,15 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
         <!-- Adicionando a dependência do SpringFox Swagger 2 Doc. Dependency. -->
         <dependency>
             <groupId>io.springfox</groupId>
