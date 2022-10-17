@@ -4,6 +4,10 @@ import com.workshop.course.entities.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação da entrada de dados na entidade {@link Category}.
+ */
 public class CategoryTest {
 
     @Test
@@ -11,7 +15,7 @@ public class CategoryTest {
 
         Category electronics = new Category(1L, "Electronics");
         Category books = new Category(2L, "Books");
-        Category computers = new Category(35L, "Computers");
+        Category computers = new Category(3L, "Computers");
 
         Assertions.assertEquals("Electronics", electronics.getname());
 

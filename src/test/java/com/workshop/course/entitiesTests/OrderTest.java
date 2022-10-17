@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação da entrada de dados na entidade {@link Order}.
+ */
 public class OrderTest {
 
     @Test
@@ -16,11 +20,11 @@ public class OrderTest {
         User roberto_santos = new User(1L, "Roberto Santos", "roberto@gmail.com", "7985475874", "123456");
         User karla_santos = new User(2L, "Karla Santos", "karla@gmail.com", "7985475874", "128456r4875dfe");
 
-        Order order1 = new Order(5L, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, roberto_santos);
-        Order order2 = new Order(15L, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, karla_santos);
-        Order order3 = new Order(1254L, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, roberto_santos);
+        Order order1 = new Order(1L, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, roberto_santos);
+        Order order2 = new Order(2L, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, karla_santos);
+        Order order3 = new Order(3L, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, roberto_santos);
 
-        Assertions.assertEquals(5L, order1.getId());
+        Assertions.assertEquals(1L, order1.getId());
         Assertions.assertEquals(Instant.parse("2019-06-20T19:53:07Z"), order1.getMomento());
         Assertions.assertEquals(OrderStatus.PAID, order1.getOrderStatus());
         Assertions.assertEquals(roberto_santos, order1.getClient());

@@ -13,6 +13,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação das atividades do repositório {@link ProductRepository} e
+ * do serviço {@link com.workshop.course.services.ProductService}.
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class ProductRepositoryTest {
@@ -22,6 +27,10 @@ public class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * Método responsável por testar e validar a entrada de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaInsertProduct() {
 
@@ -37,6 +46,10 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e retorno de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaReturnProduct() {
 
@@ -45,6 +58,10 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e alteração de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaUpdateProduct() {
 
@@ -56,12 +73,22 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável em controlar e manipular os dados do produto.
+     *
+     * @param entity Enviar os dados do produto alterado para a base de dados.
+     * @param objeto Recebe os dados do produto alterado pelo usuário.
+     */
     private void updateData(Product entity, Product objeto) {
         entity.setName(objeto.getName());
         entity.setDescription(objeto.getDescription());
         entity.setPrice(objeto.getPrice());
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e remoção de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaDeleteProduct() {
 
@@ -70,7 +97,10 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
-
+    /**
+     * Método responsável por testar, checar e validar a entrada de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void checkProductSaved() {
 
@@ -83,6 +113,9 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Médoto responsável em validar a versão do Java e a integridade de manipulação de dados.
+     */
     @Test
     @EnabledForJreRange(min = JRE.JAVA_11, max = JRE.JAVA_17)
     public void validaAlgoSomenteNoProduct() {
@@ -91,6 +124,10 @@ public class ProductRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar as exceções ocorrida na manipulação de dados por meio da class
+     * {@link ProductRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaExceptionProductRepository() {
 

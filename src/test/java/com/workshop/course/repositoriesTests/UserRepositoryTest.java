@@ -13,6 +13,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação das atividades do repositório {@link UserRepository} e
+ * do serviço {@link com.workshop.course.services.UserService}.
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class UserRepositoryTest {
@@ -20,7 +25,10 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-
+    /**
+     * Método responsável por testar e validar a entrada de dados por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaInsertUser() {
 
@@ -37,6 +45,10 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e retorno de dados por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaReturnUser() {
 
@@ -47,6 +59,10 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e alteração de dados e por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaUpdateUser() {
 
@@ -60,12 +76,22 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável em controlar e manipular os dados do usuário.
+     *
+     * @param entity Enviar os dados do usuário alterado para a base de dados.
+     * @param objeto Recebe os dados do usuário alterado pelo usuário.
+     */
     private void updateData(User entity, User objeto) {
         entity.setName(objeto.getName());
         entity.setEmail(objeto.getEmail());
         entity.setPhone(objeto.getPhone());
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e remoção de dados por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaDeleteUser() {
 
@@ -76,7 +102,10 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
-
+    /**
+     * Método responsável por testar, checar e validar a entrada de dados por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void checkUserSaved() {
 
@@ -92,6 +121,9 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Médoto responsável em validar a versão do Java e a integridade de manipulação de dados.
+     */
     @Test
     @EnabledForJreRange(min = JRE.JAVA_11, max = JRE.JAVA_17)
     public void validaAlgoSomenteNoUser() {
@@ -100,6 +132,10 @@ public class UserRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar as exceções ocorrida na manipulação de dados por meio da class
+     * {@link UserRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaExceptionUserRepository() {
 

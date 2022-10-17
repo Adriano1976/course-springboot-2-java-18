@@ -8,6 +8,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
+/**
+ * Classe responsável por receber os dados da ordem de compra dos produtos e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
 @Entity
 @Table(name = "`tb_payment`")
 public class Payment implements Serializable {
@@ -27,9 +31,19 @@ public class Payment implements Serializable {
     @MapsId
     private Order order;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public Payment() {
     }
 
+    /**
+     * Construtor com parâmetro.
+     *
+     * @param id     Recebe o código da compra.
+     * @param moment Recebe a data e a hora do dia da compra.
+     * @param order  Recebe os dados da ordem do pedido do cliente.
+     */
     public Payment(Long id, Instant moment, Order order) {
         this.id = id;
         this.moment = moment;

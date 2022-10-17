@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Classe responsável por receber os dados dos produtos e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
 @Entity
 @Table(name = "`tb_product`")
 public class Product implements Serializable {
@@ -39,9 +43,21 @@ public class Product implements Serializable {
     @Column(name = "`imgUrl`", length = 200, nullable = false)
     private String imgUrl;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public Product() {
     }
 
+    /**
+     * Construtor com parâmetro.
+     *
+     * @param id          Recebe o código do produto.
+     * @param name        Recebe o nome do produto.
+     * @param description Recebe a descrição do produto.
+     * @param price       Recebe o valor unitário do produto.
+     * @param imgUrl      Recebe a url da imagem do produto.
+     */
     public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;

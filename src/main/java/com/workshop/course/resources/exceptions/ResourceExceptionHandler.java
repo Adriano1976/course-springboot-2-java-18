@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
+/**
+ * Classe responsável em controlar e enviar a mensaem de erro ao usuário.
+ */
 @ControllerAdvice
 public class ResourceExceptionHandler {
 

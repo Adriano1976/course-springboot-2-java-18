@@ -19,6 +19,11 @@ correto para o SQL Dialect. Geralmente, são aspas duplas, mas o SQL Server usa 
 MySQL usa backticks.
 **/
 
+/**
+ * Classe responsável por receber os dados do usuário e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
+
 @Entity
 @Table(name = "`tb_user`")
 public class User implements Serializable {
@@ -45,9 +50,21 @@ public class User implements Serializable {
     @Column(name = "`password`", length = 15, nullable = false)
     private String password;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public User() {
     }
 
+    /**
+     * Construtor com parâmetros.
+     *
+     * @param id       Recebe o número do código de identificação.
+     * @param name     Recebe o nome do usuário.
+     * @param email    Recebe o email do usuário.
+     * @param phone    Recebe o telefone do usuário.
+     * @param password Recebe a senha do usuário.
+     */
     public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;

@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Classe responsável por receber os dados da categoria dos produtos e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
 @Entity
 @Table(name = "`tb_category`")
 public class Category implements Serializable {
@@ -26,9 +30,18 @@ public class Category implements Serializable {
     @Column(name = "`name`", length = 100, nullable = false)
     private String name;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public Category() {
     }
 
+    /**
+     * Cosntrutor com parâmetro.
+     *
+     * @param id   Recebe o código de identificação da categoria do produto.
+     * @param name Recebe o nome da categoria do produto.
+     */
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;

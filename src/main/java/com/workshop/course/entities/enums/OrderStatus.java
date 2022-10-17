@@ -1,5 +1,8 @@
 package com.workshop.course.entities.enums;
 
+/**
+ * Enunciado responsável pelo controle do status da ordem de compra.
+ */
 public enum OrderStatus {
 
     WAITING_PAYMENT(1),
@@ -15,10 +18,6 @@ public enum OrderStatus {
         this.code = code;
     }
 
-    public int getCode() {
-        return code;
-    }
-
     public static OrderStatus valueOf(int code) {
 
         for (OrderStatus value : OrderStatus.values()) {
@@ -28,5 +27,9 @@ public enum OrderStatus {
         }
 
         throw new IllegalArgumentException("Invalid OrderStatus code");
+    }
+
+    public int getCode() {
+        return code;
     }
 }

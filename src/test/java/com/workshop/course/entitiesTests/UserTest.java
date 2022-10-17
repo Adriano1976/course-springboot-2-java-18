@@ -4,8 +4,15 @@ import com.workshop.course.entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação da entrada de dados na entidade {@link User}.
+ */
 public class UserTest {
 
+    /**
+     * Método responsável por testar e validar a entrada de dados da classe {@link User}.
+     */
     @Test
     public void UserTests() {
 

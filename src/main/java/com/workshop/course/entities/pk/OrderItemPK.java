@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**
+ * Classe responsável em associar os produtos a ordem de compra do usuário.
+ */
 @Embeddable
 public class OrderItemPK implements Serializable {
     @Serial

@@ -14,6 +14,9 @@ import javax.annotation.Resource;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * Classe responsável por controlar e validar a manipulação dos dados da categoria do produto.
+ */
 @Resource
 @RestController
 @RequestMapping(value = "/categories")

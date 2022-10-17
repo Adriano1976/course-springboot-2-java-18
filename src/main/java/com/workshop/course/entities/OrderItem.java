@@ -10,6 +10,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe responsável por receber os dados da ordem dos itens da compra dos produtos e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
 @Entity
 @Table(name = "`tb_order_item`")
 public class OrderItem implements Serializable {
@@ -22,9 +26,20 @@ public class OrderItem implements Serializable {
     private Integer quantity;
     private Double price;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public OrderItem() {
     }
 
+    /**
+     * Contrutor com parâmetro.
+     *
+     * @param order    Recebe os dados da ordem do pedido.
+     * @param product  Recebe os dados do produto referente a ordem do pedido.
+     * @param quantity Recebe a quantidade dos produtos referente a ordem de pedido.
+     * @param price    Recebe o valor do produto.
+     */
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
         id.setOrder(order);
         id.setProduct(product);

@@ -17,6 +17,11 @@ import java.time.Instant;
 import java.util.Arrays;
 
 
+/**
+ * Classe responsável por configurar, controlar e validar os testes realizados pelos métodos
+ * de cadas tipo de testes e validação das atividades do repositório {@link OrderRepository} e
+ * do serviço {@link com.workshop.course.services.OrderService}.
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class OrderRepositoryTest {
@@ -32,6 +37,10 @@ public class OrderRepositoryTest {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
+    /**
+     * Método responsável por testar e validar a entrada de dados por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaInsertOrder() {
 
@@ -90,10 +99,17 @@ public class OrderRepositoryTest {
 
         Integer countOrder = orderRepository.findAll().size();
 
+        /* Validandos a quantidade de ordens executadas, pelo qual não retorna nenhuma exception.
+         * Sendo assim, a validação do teste retorne verdadeiro. */
+
         Assertions.assertEquals(3, countOrder);
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e o retorno dos dados por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaReturnOrder() {
 
@@ -144,12 +160,19 @@ public class OrderRepositoryTest {
 
         Integer countOrder = orderRepository.findAll().size();
 
+        /* Validandos a quantidade de ordens executadas, pelo qual não retorna nenhuma exception.
+         * Sendo assim, a validação do teste retorne verdadeiro. */
+
         Assertions.assertEquals(3, countOrder);
         Assertions.assertNotNull(order1);
         Assertions.assertNotEquals(order1, order2);
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada de dados e as alterações realizadas por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaUpdateOrder() {
 
@@ -196,6 +219,12 @@ public class OrderRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável em controlar e manipular os dados da ordem de compra.
+     *
+     * @param entity Enviar os dados da ordem de compra alterado para a base de dados.
+     * @param objeto Recebe os dados da ordem de compra alterado pelo usuário.
+     */
     private void updateData(Order entity, Order objeto) {
         entity.setMomento(objeto.getMomento());
         entity.setOrderStatus(objeto.getOrderStatus());
@@ -203,6 +232,10 @@ public class OrderRepositoryTest {
         entity.setPayment(objeto.getPayment());
     }
 
+    /**
+     * Método responsável por testar e validar a entrada e remoção de dados por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaDeleteOrder() {
 
@@ -241,9 +274,16 @@ public class OrderRepositoryTest {
         orderRepository.getReferenceById(1L);
         orderRepository.deleteById(order1.getId());
 
+        /* Validandos a remoção dos dados conforme o ‘id’ escolhido pelo usuário.
+         * Sendo assim, a validação do teste retorne verdadeiro. */
+
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar, verificar a entrada de dados e validar dos dados salvo por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
 
     @Test
     public void checkOrderSaved() {
@@ -259,12 +299,18 @@ public class OrderRepositoryTest {
 
         Integer countOrder = orderRepository.findAll().size();
 
+        /* Validandos a quantidade de ordens executadas, pelo qual não retorna nenhuma exception.
+         * Sendo assim, a validação do teste retorne verdadeiro. */
+
         Assertions.assertEquals(2, countOrder);
         Assertions.assertNotNull(order9);
         Assertions.assertNotEquals(order9, order10);
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Médoto responsável em validar a versão do Java e a integridade de manipulação de dados.
+     */
     @Test
     @EnabledForJreRange(min = JRE.JAVA_11, max = JRE.JAVA_17)
     public void validaAlgoSomenteNoOrder() {
@@ -272,6 +318,10 @@ public class OrderRepositoryTest {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Método responsável por testar e validar a entrada de dados e a não ocorrência de exceções por meio da class
+     * {@link OrderRepository} e as outras classes auxiliares.
+     */
     @Test
     public void validaExceptionOrderRepository() {
 
@@ -308,6 +358,9 @@ public class OrderRepositoryTest {
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
 
         Integer countOrder = orderRepository.findAll().size();
+
+        /* Validandos a quantidade de ordens executadas, pelo qual não retorna nenhuma exception.
+         * Sendo assim, a validação do teste retorne verdadeiro. */
 
         Assertions.assertEquals(3, countOrder);
         Assertions.assertDoesNotThrow(() -> orderRepository.findAll());

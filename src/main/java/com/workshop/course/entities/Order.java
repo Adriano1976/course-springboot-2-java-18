@@ -10,6 +10,10 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Classe responsável por receber os dados da ordem de compra dos produtos e servir como
+ * modelo da entidade na criação da tabela na base de dados.
+ */
 @Entity
 @Table(name = "`tb_order`")
 public class Order implements Serializable {
@@ -31,9 +35,20 @@ public class Order implements Serializable {
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
+    /**
+     * Construtor sem parâmetro.
+     */
     public Order() {
     }
 
+    /**
+     * Construtor com parâmetro.
+     *
+     * @param id          Recebe o código de identificação da ordem de pagamento.
+     * @param momento     Recebe a data e hora do exato momento da ordem do pagamento.
+     * @param orderStatus Recebe o status da ordem de pagamento.
+     * @param client      Recebe os dados do cliente que irá pagar o produto.
+     */
     public Order(Long id, Instant momento, OrderStatus orderStatus, User client) {
         this.id = id;
         this.momento = momento;
