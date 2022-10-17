@@ -69,6 +69,10 @@ Inserir um novo usuário, produto, categoria...
 
 * https://workshopcourse-java-springboot.herokuapp.com/swagger-ui.html#/
 
+## Visualizando o Projeto com o JavaDoc
+
+* https://adriano1976.github.io/gestao-de-venda-javadoc/
+
 ## Autor do Projeto
 
 Adriano Santos
