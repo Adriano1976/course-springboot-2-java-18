@@ -1,9 +1,8 @@
 package com.workshop.course.repositoriesTests;
 
-import com.workshop.course.entities.Order;
-import com.workshop.course.entities.User;
+import com.workshop.course.entities.*;
 import com.workshop.course.entities.enums.OrderStatus;
-import com.workshop.course.repositories.OrderRepository;
+import com.workshop.course.repositories.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
@@ -15,52 +14,185 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Instant;
+import java.util.Arrays;
 
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class OrderRepositoryTest {
 
-    User roberto_santos = new User(1L, "Roberto Santos", "roberto@gmail.com", "7985475874", "123456");
-    User karla_santos = new User(2L, "Karla Santos", "karla@gmail.com", "7985475874", "128456r4875dfe");
-
-    Order order1 = new Order(5L, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, roberto_santos);
-    Order order2 = new Order(15L, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, karla_santos);
-
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductRepository productRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Test
     public void validaInsertOrder() {
 
-        Order Order = null;
-        Assertions.assertNull(Order);
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
 
-        Assertions.assertNotNull(order1);
-        Assertions.assertSame(order1, order1);
+        Product product1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        product1.getCategories().add(category2);
+        product2.getCategories().add(category1);
+        product2.getCategories().add(category3);
+        product3.getCategories().add(category3);
+        product4.getCategories().add(category3);
+        product5.getCategories().add(category2);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        User maria_brown = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
+        User alex_green = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+
+        Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, maria_brown);
+        Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_green);
+        Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, maria_brown);
+
+        userRepository.saveAll(Arrays.asList(maria_brown, alex_green));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+        OrderItem orderItem2 = new OrderItem(order1, product3, 1, product4.getPrice());
+        OrderItem orderItem3 = new OrderItem(order2, product3, 2, product1.getPrice());
+        OrderItem orderItem4 = new OrderItem(order3, product5, 2, product5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), order1);
+        order1.setPayment(pay1);
+
+        Payment pay2 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), order1);
+        order1.setPayment(pay2);
 
         orderRepository.save(order1);
+        orderRepository.save(order2);
+
+        Assertions.assertNotNull(order1);
+        Assertions.assertNotNull(order2);
+        Assertions.assertSame(order1, order1);
+        Assertions.assertSame(order2, order2);
+
         Integer countOrder = orderRepository.findAll().size();
-        Assertions.assertEquals(1, countOrder);
+
+        Assertions.assertEquals(3, countOrder);
         Assertions.assertTrue(true);
     }
 
     @Test
     public void validaReturnOrder() {
 
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        Product product1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        product1.getCategories().add(category2);
+        product2.getCategories().add(category1);
+        product2.getCategories().add(category3);
+        product3.getCategories().add(category3);
+        product4.getCategories().add(category3);
+        product5.getCategories().add(category2);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        User maria_brown = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
+        User alex_green = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+
+        Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, maria_brown);
+        Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_green);
+        Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, maria_brown);
+
+        userRepository.saveAll(Arrays.asList(maria_brown, alex_green));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+        OrderItem orderItem2 = new OrderItem(order1, product3, 1, product4.getPrice());
+        OrderItem orderItem3 = new OrderItem(order2, product3, 2, product1.getPrice());
+        OrderItem orderItem4 = new OrderItem(order3, product5, 2, product5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), order1);
+        order1.setPayment(pay1);
+
         orderRepository.save(order1);
         orderRepository.findAll();
+
+        Integer countOrder = orderRepository.findAll().size();
+
+        Assertions.assertEquals(3, countOrder);
+        Assertions.assertNotNull(order1);
+        Assertions.assertNotEquals(order1, order2);
         Assertions.assertTrue(true);
     }
 
     @Test
     public void validaUpdateOrder() {
 
-        orderRepository.save(order1);
-        orderRepository.getReferenceById(1L);
+        Category category1 = new Category(1L, "Electronics");
+        Category category2 = new Category(2L, "Books");
+        Category category3 = new Category(3L, "Computers");
 
-        updateData(order1, order1);
+        Product product1 = new Product(1L, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product(2L, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product(3L, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product(4L, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product(5L, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        product1.getCategories().add(category2);
+        product2.getCategories().add(category1);
+        product2.getCategories().add(category3);
+        product3.getCategories().add(category3);
+        product4.getCategories().add(category3);
+        product5.getCategories().add(category2);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        User maria_brown = new User(1L, "Maria Brown", "maria@gmail.com", "988888888", "123456");
+        User alex_green = new User(2L, "Alex Green", "alex@gmail.com", "977777777", "123456");
+
+        Order order1 = new Order(1L, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, maria_brown);
+        Order order2 = new Order(2L, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_green);
+        Order order3 = new Order(3L, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, maria_brown);
+
+        userRepository.saveAll(Arrays.asList(maria_brown, alex_green));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        orderRepository.getReferenceById(1L);
+        updateData(order1, order1 = new Order(1L, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.SHIPPED, maria_brown));
         orderRepository.save(order1);
+
+        orderRepository.getReferenceById(2L);
+        updateData(order2, order2 = new Order(2L, Instant.parse("2019-06-20T20:15:07Z"), OrderStatus.CANCELED, alex_green));
+        orderRepository.save(order2);
+
         Assertions.assertTrue(true);
     }
 
@@ -74,8 +206,41 @@ public class OrderRepositoryTest {
     @Test
     public void validaDeleteOrder() {
 
-        orderRepository.save(order1);
-        orderRepository.delete(order1);
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        Product product1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        product1.getCategories().add(category2);
+        product2.getCategories().add(category1);
+        product2.getCategories().add(category3);
+        product3.getCategories().add(category3);
+        product4.getCategories().add(category3);
+        product5.getCategories().add(category2);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        User maria_brown = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
+        User alex_green = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+
+        Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, maria_brown);
+        Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_green);
+        Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, maria_brown);
+
+        userRepository.saveAll(Arrays.asList(maria_brown, alex_green));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        orderRepository.getReferenceById(1L);
+        orderRepository.deleteById(order1.getId());
+
         Assertions.assertTrue(true);
     }
 
@@ -83,12 +248,20 @@ public class OrderRepositoryTest {
     @Test
     public void checkOrderSaved() {
 
-        orderRepository.save(order1);
-        Integer countOrder = orderRepository.findAll().size();
-        Assertions.assertEquals(1, countOrder);
+        User jose_santos = new User(null, "José Santos", "jose@gmail.com", "7985475874", "123456");
+        User alex_santos = new User(null, "Alex Santos", "alex@gmail.com", "7985475874", "128456r4875dfe");
 
-        Assertions.assertNotNull(order1);
-        Assertions.assertNotEquals(order1, order2);
+        Order order9 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, jose_santos);
+        Order order10 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_santos);
+
+        userRepository.saveAll(Arrays.asList(jose_santos, alex_santos));
+        orderRepository.saveAll(Arrays.asList(order9, order10));
+
+        Integer countOrder = orderRepository.findAll().size();
+
+        Assertions.assertEquals(2, countOrder);
+        Assertions.assertNotNull(order9);
+        Assertions.assertNotEquals(order9, order10);
         Assertions.assertTrue(true);
     }
 
@@ -102,10 +275,41 @@ public class OrderRepositoryTest {
     @Test
     public void validaExceptionOrderRepository() {
 
-        orderRepository.save(order1);
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        Product product1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        product1.getCategories().add(category2);
+        product2.getCategories().add(category1);
+        product2.getCategories().add(category3);
+        product3.getCategories().add(category3);
+        product4.getCategories().add(category3);
+        product5.getCategories().add(category2);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
+
+        User maria_brown = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
+        User alex_green = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
+
+        Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, maria_brown);
+        Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, alex_green);
+        Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, maria_brown);
+
+        userRepository.saveAll(Arrays.asList(maria_brown, alex_green));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
         Integer countOrder = orderRepository.findAll().size();
 
-        Assertions.assertEquals(1, countOrder);
+        Assertions.assertEquals(3, countOrder);
         Assertions.assertDoesNotThrow(() -> orderRepository.findAll());
         Assertions.assertTrue(true);
     }
