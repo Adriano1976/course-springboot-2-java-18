@@ -63,9 +63,21 @@ Inserir um novo usuário, produto, categoria...
 
 ## Visualizando o Projeto com o Postman
 
+![api-gestao-de-vendas-postman](https://user-images.githubusercontent.com/17755195/196307967-8982e98c-88d6-4014-bc46-b3a27a97e7af.png)
+
+O Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas. Mas como testar sua API? 
+Configure o ambiente dos testes: 
+* configure o ambiente com base nos requisitos da API. 
+* Configure o banco de dados e o servidor de acordo com os requisitos da aplicação. 
+* Em seguida, faça uma chamada de API para garantir que tudo esteja configurado e que nada seja interrompido antes de começar os testes.
+
 * https://documenter.getpostman.com/view/20651332/2s83zdvmJ6
 
 ## Visualizando o Projeto com o Swagger UI
+
+![api-gestao-de-vendas-swagger](https://user-images.githubusercontent.com/17755195/196308810-8a56d0b9-6d1e-42df-8833-661655fb755b.png)
+
+O Swagger é um framework composto por diversas ferramentas que, independente da linguagem, auxilia a descrição, consumo e visualização de serviços de uma API REST. Em suma, o Swagger visa padronizar este tipo de integração, descrevendo os recursos que uma API deve possuir, como endpoints, dados recebidos, dados retornados, códigos HTTP e métodos de autenticação, entre outros. 
 
 * https://workshopcourse-java-springboot.herokuapp.com/swagger-ui.html#/
 
