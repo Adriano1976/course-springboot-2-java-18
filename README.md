@@ -71,6 +71,10 @@ Inserir um novo usuário, produto, categoria...
 
 ## Visualizando o Projeto com o JavaDoc
 
+![api-gestao-de-vendas-javadoc](https://user-images.githubusercontent.com/17755195/196307213-3c77f5e0-5153-457f-b796-f3b2acbca0bf.png)
+
+Javadoc é um gerador de documentação criado pela Sun Microsystems para documentar a API dos programas em Java, a partir do código-fonte. O resultado é expresso em HTML. É constituído, basicamente, por algumas marcações muitos simples inseridas nos comentários do programa. Portanto, é uma ferramenta para a criação de documentação de pacotes, classes, atributos e métodos Java a partir do processamento do código fonte com comentários em formato adequado onde é possível navegar de um documento para outro de forma a ajudar em compreender a relação entre as classes e métodos.
+
 * https://adriano1976.github.io/gestao-de-venda-javadoc/
 
 ## Autor do Projeto
