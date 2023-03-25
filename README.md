@@ -63,10 +63,29 @@ Inserir um novo usuário, produto, categoria...
 
 ## Visualizando o Projeto com o Postman
 
+# Por que devo trabalhar com a API Client Postman?
+
+A API Client Postman é uma ferramenta de desenvolvimento de software usada para testar e documentar APIs. Aprender a trabalhar com a Postman pode trazer vários benefícios, como:
+
+* Testes automatizados: A Postman permite que você crie testes automatizados para suas APIs, o que pode economizar tempo e esforço e reduzir erros manuais. Você pode criar testes para cada chamada de API, validar a resposta e até mesmo automatizar fluxos de trabalho complexos.
+
+* Documentação de API: A Postman permite que você crie documentação clara e precisa para suas APIs. Isso pode ajudar outros desenvolvedores a entender como usar sua API e quais são os recursos disponíveis.
+
+* Ambiente de desenvolvimento integrado: A Postman oferece um ambiente de desenvolvimento integrado (IDE) para trabalhar com APIs. Isso significa que você pode gerenciar todas as suas chamadas de API e testes em um único lugar, sem precisar alternar entre diferentes ferramentas.
+
+* Colaboração: A Postman permite que você compartilhe suas chamadas de API, coleções e testes com outros membros da equipe, o que pode facilitar a colaboração e a comunicação.
+
+* Suporte multiplataforma: A Postman é uma ferramenta multiplataforma, o que significa que você pode usá-la em diferentes sistemas operacionais e dispositivos.
+
+* Comunidade: A Postman tem uma grande comunidade de usuários e desenvolvedores, o que significa que você pode encontrar muitos recursos, tutoriais e exemplos online para ajudá-lo a aprender e usar a ferramenta.
+
+Em resumo, aprender a trabalhar com a API Client Postman pode ajudá-lo a testar, documentar e colaborar no desenvolvimento de suas APIs. Além disso, a ferramenta oferece recursos de automação, ambiente integrado, suporte multiplataforma e comunidade ativa para ajudá-lo a se tornar um desenvolvedor mais habilidoso.
+
 ![api-gestao-de-vendas-postman](https://user-images.githubusercontent.com/17755195/196309582-3def9c85-3b5d-4672-aacc-2f949e398004.png)
 
-O Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas. Mas como testar sua API? 
+Portanto, o Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas. Mas como testar sua API? 
 Configure o ambiente dos testes: 
+
 * configure o ambiente com base nos requisitos da API. 
 * Configure o banco de dados e o servidor de acordo com os requisitos da aplicação. 
 * Em seguida, faça uma chamada de API para garantir que tudo esteja configurado e que nada seja interrompido antes de começar os testes.
